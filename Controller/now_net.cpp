@@ -35,6 +35,7 @@ void handle_error(esp_err_t err)
   }
 }
 
+
 void msg_send_cb(const uint8_t* mac, esp_now_send_status_t sendStatus)
 {
 
@@ -66,6 +67,19 @@ void send_msg(esp_now_msg_t * msg)
     //Serial.println("Error sending message");
     handle_error(status);
   }
+}
+
+esp_now_msg_t create_msg(uint8_t bot_ID, botCtrl bot){
+  esp_now_msg_t msg;
+  msg.bot_ID = bot_ID;
+  msg.posX = bot.posX;
+  msg.posY = bot.posY;
+  msg.dir = bot.dir;
+  msg.standby = bot.standby;
+  msg.moving = bot.moving;
+  msg.command = bot.command;
+
+  return msg;
 }
 
 void network_setup()

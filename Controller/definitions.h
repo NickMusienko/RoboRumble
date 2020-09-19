@@ -8,8 +8,9 @@
 #endif
 
 #define WIFI_CHANNEL 1
+#define TOTALBOTS 4
 
-
-
+#define motorRight 2
+#define motorLeft 3
 
 #endif
