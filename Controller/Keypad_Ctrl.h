@@ -17,28 +17,56 @@ extern uint8_t hexaNums[ROWS][COLS] = {
   {12,13,14,15}
 };
 
+typedef struct buttonID{
+  uint8_t botID = 8;
+  uint8_t commandID = 0;
+};
+
 extern uint8_t LED[5] = {32, 33, 25, 26, 27};
 
-uint8_t selectBot(uint8_t button, uint8_t currentBot){
-  uint8_t newBot = currentBot;
+buttonID keypadRead(uint8_t button, buttonID oldInput){
+  uint8_t newBot = oldInput.botID;
+  buttonID newInput;
   switch (button){
-      case 3:
+      case 3:                       //"A" Button
         newBot = 0;
+        newCommand = 0;
         break;
-      case 7:
+      case 7:                       //"B" Button
         newBot = 1;
+        newCommand = 0;
         break;
-      case 11:
+      case 11:                      //"C" Button
         newBot = 2;
+        newCommand = 0;
         break;
-      case 15:
+      case 15:                      //"D" Button
         newBot = 3;
+        newCommand = 0;
         break;
-      case 12:
+      case 12:                      //"*" Button
         newBot = 8;
-      default:
-        newBot = currentBot;
+        newCommand = 0;
+        break;
+      case 1:                       //"1" Button
+        newCommand = 1; //forward      
+        break;
+      case 4:                       //"4" Button
+        newCommand = 4; //turn left
+        break;
+      case 6:                       //"6" Button
+        newCommand = 2; //turn right
+        break;
+      case 9:                       //"8" Button
+        newCommand = 3; //reverse
+        break;
+      default:                      //default is to return the same botID and stop the bot.
+        newBot = oldInput.botID;
+        newCommand = 0;
         break;
     }
-  return newBot;
+
+  newInput.botID = newBot;
+  newInput.commandID = newCommand;
+  return newInput;
 }
