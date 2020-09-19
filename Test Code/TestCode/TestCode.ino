@@ -3,13 +3,14 @@
 #include "motor_ctrl.h"
 #include "rgb_sensor.h"
 
-color currColor;
+motorCtrl mC;
+SensorRGB rgb;
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  initMotors();
-  initRGB;
+  mC.init();
+  rgb.init();
 }
 
 void loop() {
@@ -17,18 +18,14 @@ void loop() {
   int testState = 0;
   if (testState == 0)
   {
-    driveMotors(FORWARD, FORWARD);
-    delay(1000);
-    driveMotors(STOP, STOP);
-    delay(1000);
-    driveMotors(BACKWARD, BACKWARD);
-    delay(1000);
-    driveMotors(STOP, STOP);
-    delay(1000);
+    mC.driveT(FORWARD, 1000);
+    mC.driveT(BACKWARD, 1000);
+    mC.driveT(TURN_L, 1000);
+    mC.driveT(TURN_R, 1000);
   }
   else
   {
-    testRGB();
+    rgb.test();
     delay(1000);
   }
 }

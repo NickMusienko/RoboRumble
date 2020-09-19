@@ -1,29 +1,39 @@
 #include "rgb_sensor.h"
 
-Adafruit_TCS34725 tcs = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_700MS, TCS34725_GAIN_1X); 
-
-void initRGB()
-{
-  if (tcs.begin()) {
+void SensorRGB::init() {
+  _tcs = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_700MS, TCS34725_GAIN_1X); 
+  pinMode(PIN_LED, OUTPUT);
+  
+  
+  if (_tcs.begin()) {
     if (Serial) Serial.println("Found sensor");
   }
   else {
-    if (Serial) Serial.println("Did not find sensor");
+    if (Serial) Serial.println("No sensor found. Check your wiring.");
   }
+  r = 0;
+  g = 0;
+  b = 0;
+  c = 0;
+  led = false;
+  
 }
 
-color getRGB()
-{
-  tcs.getRawData(&curColor.r, &curColor.g, &curColor.b, &curColor.c);
+void SensorRGB::update() {
+  _tcs.getRawData(&r, &g, &b, &c);
 }
 
-void testRGB()
-{
+void SensorRGB::test() {
   if (Serial) {
-    color c = getRGB();
-    Serial.print("R: "); Serial.print(c.r, DEC); Serial.print(" ");
-    Serial.print("G: "); Serial.print(c.g, DEC); Serial.print(" ");
-    Serial.print("B: "); Serial.print(c.b, DEC); Serial.print(" ");
-    Serial.print("C: "); Serial.print(c.c, DEC); Serial.print(" ");
+    SensorRGB::update();
+    Serial.print("R: "); Serial.print(r, DEC); Serial.print(" ");
+    Serial.print("G: "); Serial.print(g, DEC); Serial.print(" ");
+    Serial.print("B: "); Serial.print(b, DEC); Serial.print(" ");
+    Serial.print("C: "); Serial.print(c, DEC); Serial.println(" ");
   }
+}
+
+void SensorRGB::setLED(uint8_t state) {
+  digitalWrite(PIN_LED, state);
+  led = (bool)state;
 }

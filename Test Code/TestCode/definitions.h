@@ -14,6 +14,7 @@
 
 #define PIN_SDA   21
 #define PIN_SCL   22
+#define PIN_LED   23 // don't use yet pls
 
 // motor commands
 #define M1    0
@@ -21,4 +22,6 @@
 
 #define FORWARD   0
 #define BACKWARD  1
-#define STOP      2
+#define TURN_L    2
+#define TURN_R    3
+#define STOP      4
