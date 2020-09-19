@@ -35,6 +35,24 @@ void handle_error(esp_err_t err)
   }
 }
 
+void msg_recv_cb(const uint8_t *mac_addr, const uint8_t *data, int len){
+  if (len == sizeof(esp_now_msg_t)){
+    esp_now_msg_t msg;
+    memcpy(&msg, data, len);
+  
+  #ifdef MASTER
+    bots[msg.botID].standby = msg.standby;
+    bots[msg.botID].command = msg.command;
+    
+  #endif
+  #ifndef MASTER
+    if(msg.botID == BOT_ID){
+      bots[BOT_ID].standby = 0;
+      bots[BOT_ID].command = msg.command;
+    }
+  #endif
+  }
+}
 
 void msg_send_cb(const uint8_t* mac, esp_now_send_status_t sendStatus)
 {
@@ -71,7 +89,7 @@ void send_msg(esp_now_msg_t * msg)
 
 esp_now_msg_t create_msg(uint8_t bot_ID, botCtrl bot){
   esp_now_msg_t msg;
-  msg.bot_ID = bot_ID;
+  msg.botID = bot_ID;
   msg.posX = bot.posX;
   msg.posY = bot.posY;
   msg.dir = bot.dir;
@@ -87,6 +105,7 @@ void network_setup()
   //Puts ESP in STATION MODE
   WiFi.mode(WIFI_STA);
   WiFi.disconnect();
+
 
   if (esp_now_init() != 0)
   {
@@ -121,4 +140,6 @@ void network_setup()
   }
 
   Serial.println("Exit.");
+
+  
 }

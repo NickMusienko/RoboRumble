@@ -4,7 +4,7 @@
 #define MASTER
 #ifndef MASTER
 #define Slave
-#define Bot_ID 0
+#define BOT_ID 0
 #endif
 
 #define WIFI_CHANNEL 1

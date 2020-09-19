@@ -14,7 +14,7 @@
  extern uint8_t slave_ID;
 
  typedef struct __attribute__((packed)) esp_now_msg_t{
-  uint8_t bot_ID;
+  uint8_t botID;
   uint8_t controller = 8;
   uint8_t posX;
   uint8_t posY;
