@@ -1,0 +1,59 @@
+<link href="style.css" rel="stylesheet" type="text/css">
+<h1>Robo Ruckus</h1>
+
+
+<div class="select">
+    <select id="select" onchange='OnChange(select);'>
+    <option value="1">Orange</option>
+    <option value="2">Blue</option>
+    <option value="3">Black</option>
+  </select>
+
+
+    <SCRIPT LANGUAGE=javascript>
+        function OnChange(dropdown) {
+            var myindex = dropdown.selectedIndex
+            var SelValue = dropdown.options[myindex].value
+            switch (SelValue) {
+                case "1":
+                    document.body.style.backgroundColor = "orange";
+                    xhttp.open("POST", "localhost:2240", true);
+                    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    xhttp.send("robot=orange");
+                    break;
+                case "2":
+                    document.body.style.backgroundColor = '#74f8ff';
+                    xhttp.open("POST", "localhost:2240", true);
+                    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    xhttp.send("robot=blue");
+                    break;
+                case "3":
+                    document.body.style.backgroundColor = "white";
+                    xhttp.open("POST", "localhost:2240", true);
+                    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    xhttp.send("robot=black");
+                    break;
+            }
+            var baseURL = '#/' + SelValue;
+            top.location.href = baseURL;
+
+            return true;
+        }
+    </SCRIPT>
+</div>
+
+<div class="set">
+
+    <nav class="d-pad">
+        <a class="up" href="#" onclick="sendCommand('up');"></a>
+        <a class="right" href="#" onclick="sendCommand('right');"></a>
+        <a class="down" href="#" onclick="sendCommand('down');"></a>
+        <a class="left" href="#" onclick="sendCommand('left');"></a>
+    </nav>
+
+    <script LANGUAGE=javascript>
+        function sendCommand(command) {
+
+        }
+    </script>
+</div>
