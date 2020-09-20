@@ -1,7 +1,7 @@
 #include "rgb_sensor.h"
 
 void SensorRGB::init() {
-  _tcs = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_700MS, TCS34725_GAIN_1X); 
+  _tcs = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_50MS, TCS34725_GAIN_1X); 
   pinMode(PIN_LED, OUTPUT);
   
   

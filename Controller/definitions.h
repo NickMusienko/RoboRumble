@@ -14,7 +14,7 @@
 
 #define PIN_SDA   21
 #define PIN_SCL   22
-#define PIN_LED   27 // don't use yet pls
+#define PIN_LED   23 // don't use yet pls
 
 // motor commands
 #define M1    0

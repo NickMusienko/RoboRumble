@@ -11,11 +11,12 @@ void setup() {
   Serial.begin(9600);
   mC.init();
   rgb.init();
+  rgb.setLED(HIGH);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  int testState = 0;
+  int testState = 1;
   if (testState == 0)
   {
     mC.driveT(FORWARD, 1000);
@@ -26,6 +27,6 @@ void loop() {
   else
   {
     rgb.test();
-    delay(1000);
+    delay(50);
   }
 }
