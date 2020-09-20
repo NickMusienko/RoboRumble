@@ -7,10 +7,10 @@
 
 
 // esp32 pin definitions
-#define PIN_M1A   16
-#define PIN_M1B   17
-#define PIN_M2A   18
-#define PIN_M2B   19
+#define PIN_M1A   18
+#define PIN_M1B   19
+#define PIN_M2A   15
+#define PIN_M2B   27
 
 #define PIN_SDA   21
 #define PIN_SCL   22

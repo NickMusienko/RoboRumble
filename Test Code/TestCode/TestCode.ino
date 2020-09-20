@@ -16,7 +16,7 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  int testState = 1;
+  int testState = 0;
   if (testState == 0)
   {
     mC.driveT(FORWARD, 1000);
