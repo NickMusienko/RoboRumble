@@ -232,22 +232,6 @@ F 3 "" H 7600 5450 50  0001 C CNN
 	1    7600 5450
 	1    0    0    -1  
 $EndComp
-$Comp
-L ComponentsLibrary:ESP32-DEVKITC-32D U4
-U 1 1 5F6D6257
-P 8200 2200
-F 0 "U4" H 8200 3367 50  0000 C CNN
-F 1 "ESP32-DEVKITC-32D" H 8200 3276 50  0000 C CNN
-F 2 "MODULE_ESP32-DEVKITC-32D" H 8200 2200 50  0001 L BNN
-F 3 "None" H 8200 2200 50  0001 L BNN
-F 4 "None" H 8200 2200 50  0001 L BNN "Field4"
-F 5 "ESP32-DEVKITC-32D" H 8200 2200 50  0001 L BNN "Field5"
-F 6 "Unavailable" H 8200 2200 50  0001 L BNN "Field6"
-F 7 "Espressif Systems" H 8200 2200 50  0001 L BNN "Field7"
-F 8 "Eval Board For Esp-Wroom-32" H 8200 2200 50  0001 L BNN "Field8"
-	1    8200 2200
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	7250 3050 7250 3100
 Wire Wire Line
@@ -270,7 +254,6 @@ NoConn ~ 9000 2500
 NoConn ~ 9000 2700
 NoConn ~ 9000 2200
 NoConn ~ 7400 2500
-NoConn ~ 9000 2800
 Wire Wire Line
 	9000 1800 9300 1800
 Wire Wire Line
@@ -309,20 +292,20 @@ $EndComp
 Wire Wire Line
 	7200 1300 7400 1300
 Wire Wire Line
+	7400 2300 7100 2300
+Wire Wire Line
+	9000 2800 9300 2800
+Wire Wire Line
 	9000 2000 9300 2000
 Wire Wire Line
 	9000 2100 9300 2100
-Wire Wire Line
-	9000 2300 9300 2300
-Wire Wire Line
-	9000 2400 9300 2400
-Text Label 9300 2400 2    50   ~ 0
-M1_A
-Text Label 9300 2300 2    50   ~ 0
-M1_B
 Text Label 9300 2100 2    50   ~ 0
-M2_A
+M1_A
 Text Label 9300 2000 2    50   ~ 0
+M1_B
+Text Label 9300 2800 2    50   ~ 0
+M2_A
+Text Label 7100 2300 0    50   ~ 0
 M2_B
 $Comp
 L ComponentsLibrary:TCS-34725 U?
@@ -378,4 +361,20 @@ Wire Wire Line
 	9450 1400 9000 1400
 Text Label 9450 1400 2    50   ~ 0
 TCS_LED
+$Comp
+L ComponentsLibrary:ESP32-DEVKITC-32D U4
+U 1 1 5F6D6257
+P 8200 2200
+F 0 "U4" H 8200 3367 50  0000 C CNN
+F 1 "ESP32-DEVKITC-32D" H 8200 3276 50  0000 C CNN
+F 2 "MODULE_ESP32-DEVKITC-32D" H 8200 2200 50  0001 L BNN
+F 3 "None" H 8200 2200 50  0001 L BNN
+F 4 "None" H 8200 2200 50  0001 L BNN "Field4"
+F 5 "ESP32-DEVKITC-32D" H 8200 2200 50  0001 L BNN "Field5"
+F 6 "Unavailable" H 8200 2200 50  0001 L BNN "Field6"
+F 7 "Espressif Systems" H 8200 2200 50  0001 L BNN "Field7"
+F 8 "Eval Board For Esp-Wroom-32" H 8200 2200 50  0001 L BNN "Field8"
+	1    8200 2200
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

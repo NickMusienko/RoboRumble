@@ -375,7 +375,7 @@ Wire Wire Line
 	2550 5200 2200 5200
 NoConn ~ 2550 5350
 Wire Wire Line
-	6950 2300 7400 2300
-Text Label 6950 2300 0    50   ~ 0
+	9450 1400 9000 1400
+Text Label 9450 1400 2    50   ~ 0
 TCS_LED
 $EndSCHEMATC
