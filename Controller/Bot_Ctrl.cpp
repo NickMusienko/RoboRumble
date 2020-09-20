@@ -13,7 +13,3 @@ void botCtrl::init(){
     bots[i].command = 0;
   }
 }
-
-void botCtrl::setup(){
-  pinMode(motorLeft, OUTPUT); pinMode(motorRight, OUTPUT); 
-}
