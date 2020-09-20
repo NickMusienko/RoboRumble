@@ -1,0 +1,99 @@
+<link href="style.css" rel="stylesheet" type="text/css">
+<h1>Robo Ruckus</h1>
+
+
+ <form action="localhost:8080/#" method="post">
+<div class="select">
+    <select id="select" onchange='OnChange(select);'>
+    <option value="1">Red</option>
+    <option value="2">Blue</option>
+  </select>
+
+    <SCRIPT LANGUAGE=javascript>
+        function OnChange(dropdown) {
+            var myindex = dropdown.selectedIndex
+            var SelValue = dropdown.options[myindex].value
+            var xhttp = new XMLHttpRequest();
+            switch (SelValue) {
+                case "1":
+                    document.body.style.backgroundColor = "red";
+                    document.cookie = "bot=red";
+                    document.getElementById('redPost').submit();
+
+                    break;
+                    case "2":localhost:3000
+                    document.body.style.backgroundColor = '#74f8ff';
+                    document.cookie = "bot=blue";
+                    document.getElementById('bluePost').submit();
+
+                    break;
+            }
+            var baseURL = '#/' + SelValue;
+            top.location.href = baseURL;
+
+            return true;
+        }
+    </SCRIPT>
+    <form id="redPost" action="http://localhost:8080/#" method="POST">
+        <input type="hidden" name ="bot" value = "red">
+      </form>
+      <form id="bluePost" action="http://localhost:8080/#" method="POST">
+        <input type="hidden" name ="bot" value = "blue">
+      </form>
+    </form>
+</div>
+
+<div class="set">
+
+    <form action="localhost:8080/#" method="post">
+    <nav class="d-pad">
+        <a class="up" href="#" onclick="document.getElementById('up').submit();"></a>
+        <a class="right" href="#" onclick="document.getElementById('right').submit();"></a>
+        <a class="down" href="#"  onclick="document.getElementById('down').submit();"></a>
+        <a class="left" href="#" onclick="document.getElementById('left').submit();"></a>
+    </nav>
+</form>
+<script>
+        var decodedCookie = decodeURIComponent(document.cookie);
+        if(getCookie("bot") == undefined){
+            //ignore
+        }else{
+            var bot = getCookie("bot");
+            if(decodedCookie.includes("blue")){
+                document.body.style.background = "#74f8ff";
+                document.getElementById('select').selectedIndex = '2';
+              }else{
+              document.body.style.background = "red";
+            }
+        }
+  
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+  </script>
+
+
+<form id="up" action="http://localhost:8080/#" method="POST">
+    <input type="hidden" name ="direction" value = "up">
+  </form>
+  <form id="down" action="http://localhost:8080/#" method="POST">
+    <input type="hidden" name ="direction" value = "down">
+  </form>
+  <form id="left" action="http://localhost:8080/#" method="POST">
+    <input type="hidden" name ="direction" value = "left">
+  </form>
+  <form id="right" action="http://localhost:8080/#" method="POST">
+    <input type="hidden" name ="direction" value = "right">
+  </form>
+</div>
