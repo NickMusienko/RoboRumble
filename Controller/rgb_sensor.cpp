@@ -3,7 +3,7 @@
 void SensorRGB::init() {
   _tcs = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_50MS, TCS34725_GAIN_1X); 
   pinMode(PIN_LED, OUTPUT);
-  
+  digitalWrite(PIN_LED,HIGH);
   
   if (_tcs.begin()) {
     if (Serial) Serial.println("Found sensor");
@@ -15,7 +15,7 @@ void SensorRGB::init() {
   g = 0;
   b = 0;
   c = 0;
-  led = false;
+  led = true;
   
 }
 
@@ -42,15 +42,15 @@ void SensorRGB::setLED(uint8_t state) {
 uint8_t SensorRGB::mapColor(){
   uint8_t color = 10;                             
                               //rLow, rHigh, gLow, gHigh, bLow, bHigh, cLow, cHigh
-  uint16_t thresholds[9][8]{   {   0,  5000,    0,  5000,    0,  5000,    0,  5000}, //colorA
-                               {   0,  5000,    0,  5000,    0,  5000,    0,  5000}, //colorB
-                               {   0,  5000,    0,  5000,    0,  5000,    0,  5000}, //colorC
-                               {   0,  5000,    0,  5000,    0,  5000,    0,  5000}, //colorD
-                               {   0,  5000,    0,  5000,    0,  5000,    0,  5000}, //colorE
-                               {   0,  5000,    0,  5000,    0,  5000,    0,  5000}, //colorF
-                               {   0,  5000,    0,  5000,    0,  5000,    0,  5000}, //colorG
-                               {   0,  5000,    0,  5000,    0,  5000,    0,  5000}, //colorH
-                               {   0,  5000,    0,  5000,    0,  5000,    0,  5000}  //colorI
+  uint16_t thresholds[9][8]{   {   0,  5000,    0,  5000,    0,  5000,    0,  5000}, //colorA purple
+                               {   0,  5000,    0,  5000,    0,  5000,    0,  5000}, //colorB pink
+                               {   0,  5000,    0,  5000,    0,  5000,    0,  5000}, //colorC yellow
+                               {   0,  5000,    0,  5000,    0,  5000,    0,  5000}, //colorD white
+                               {   0,  5000,    0,  5000,    0,  5000,    0,  5000}, //colorE green
+                               {   0,  5000,    0,  5000,    0,  5000,    0,  5000}, //colorF blue
+                               {   0,  5000,    0,  5000,    0,  5000,    0,  5000}, //colorG cyan
+                               {   0,  5000,    0,  5000,    0,  5000,    0,  5000}, //colorH red
+                               {   0,  5000,    0,  5000,    0,  5000,    0,  5000}  //colorI black
   };
 
   while (color == 10){

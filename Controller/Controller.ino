@@ -34,6 +34,7 @@ void setup() {
   };
   #endif
   #ifndef MASTER
+    bots[BOT_ID].init();
     mC.init();
     rgb.init();
   #endif
@@ -63,6 +64,7 @@ void loop() {
   #endif
 
   #ifndef MASTER
+    rgb.test();
     while(bots[BOT_ID].standby != 1){
       uint8_t startingColor = rgb.getColor();
       mC.drive(bots[BOT_ID].command);
@@ -79,10 +81,11 @@ void loop() {
         bots[BOT_ID].posX += chgX;
         bots[BOT_ID].posY += chgY;
         }
-      }
-  
+        
       bots[BOT_ID].standby = 1;
       bots[BOT_ID].command = 0;
+      }
+  
       esp_now_msg_t msg;
       msg = create_msg(BOT_ID, bots[BOT_ID]);
       send_msg(&msg);
