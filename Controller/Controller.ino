@@ -64,20 +64,29 @@ void loop() {
 
   #ifndef MASTER
     while(bots[BOT_ID].standby != 1){
+      uint8_t startingColor = rgb.getColor();
+      mC.drive(bots[BOT_ID].command);
       Serial.print("Executing Command: ");
       Serial.println(bots[BOT_ID].command);
-      delay(1000);
-      Serial.println("waiting...");
-      delay(1000);
-      Serial.println("done!");
+      int8_t endColor = rgb.getColor();
+      int8_t chgX, chgY;
+      if(startingColor != endColor){
+        int8_t change;
+        change = rgb.changePos(startingColor,endColor);
+        if(change >= 3){chgY = change - 4; chgX = 0;}
+        else{chgX = change - 1; chgY = 0;};
+        
+        bots[BOT_ID].posX += chgX;
+        bots[BOT_ID].posY += chgY;
+        }
+      }
+  
       bots[BOT_ID].standby = 1;
       bots[BOT_ID].command = 0;
       esp_now_msg_t msg;
       msg = create_msg(BOT_ID, bots[BOT_ID]);
       send_msg(&msg);
-    }
     
- 
   #endif
   
   //Serial.println(bot_tar);

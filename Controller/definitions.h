@@ -20,6 +20,16 @@
 #define M1    0
 #define M2    1
 
+#define colorA 0
+#define colorB 1
+#define colorC 2
+#define colorD 3
+#define colorE 4
+#define colorF 5
+#define colorG 6
+#define colorH 7
+#define colorI 8
+
 #endif
 
 #define WIFI_CHANNEL 1
