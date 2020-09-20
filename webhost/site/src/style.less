@@ -9,7 +9,11 @@ body {
 }
 h1 {
   margin: 0 0 0.25em;
+  color: white;
+  font-family: "Lucida Console", Monaco, monospace;
 }
+
+
 /* Reset Select */
 select {
   -webkit-appearance: none;
@@ -347,26 +351,26 @@ select {
 
 
 
-.grid {
-    // Old spec
-    display: -ms-grid;
-    -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    -ms-grid-rows: auto;
-    
-    // New spec
-    display: grid;
-    grid-template-columns: repeat( 8, 1fr );
-    grid-template-rows: auto;
-    
-    // by the power of Grayskull!
-    &__item::before {
-        content: '';
-        display: block;
-        padding-top: 100%;
-    }
+.game-board{ 
+  display: grid;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  grid-template-columns: 60px 60px 60px 60px 60px 60px;
+  grid-template-rows: 60px 60px  60px 60px 60px 60px;
+  justify-content: center;
 }
-
-
+.wall{
+  background-color:black;
+}
+.box :nth-child(6) {
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  background-color: #d9d9d9;
+  border: 2px solid black;
+ }
 // set direction active state
 .d-pad.up a.up:before { border-bottom-color: #333; }
 .d-pad.down a.down:before { border-top-color: #333; }

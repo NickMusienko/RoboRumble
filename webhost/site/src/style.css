@@ -7,6 +7,8 @@ body {
 }
 h1 {
   margin: 0 0 0.25em;
+  color: white;
+  font-family: "Lucida Console", Monaco, monospace;
 }
 /* Reset Select */
 select {
@@ -345,18 +347,25 @@ select {
 .d-pad.right a.right:before {
   border-left-color: #333;
 }
-.grid {
-  display: -ms-grid;
-  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  -ms-grid-rows: auto;
+.game-board {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: auto;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  grid-template-columns: 60px 60px 60px 60px 60px 60px;
+  grid-template-rows: 60px 60px  60px 60px 60px 60px;
+  justify-content: center;
 }
-.grid__item::before {
-  content: '';
-  display: block;
-  padding-top: 100%;
+.wall {
+  background-color: black;
+}
+.box :nth-child(6) {
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  background-color: #d9d9d9;
+  border: 2px solid black;
 }
 .d-pad.up a.up:before {
   border-bottom-color: #333;

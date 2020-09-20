@@ -1,8 +1,25 @@
 <link href="style.css" rel="stylesheet" type="text/css">
 <h1>Robo Ruckus</h1>
+<div class = "game-board">
+  <div class="box"></div> <div class="box"></div>
+  <div class="box"></div> <div class="box"></div>
+  <div class="box"></div> <div class="box"></div>
+  <div class="box"></div> <div class="box"></div>
+  <div class="box"></div> <div class="box"></div>
+  <div class="box"></div> <div class="box"></div>
+  <div class="box"></div> <div class="box"></div>
+  <div class="box"></div> <div class="box"></div>
+  <div class="box"></div> <div class="box"></div>
+  <div class="box"></div> <div class="box"></div>
+  <div class="box"></div> <div class="box"></div>
+  <div class="box"></div> <div class="box"></div>
+  <div class="box"></div> <div class="box"></div>
+  <div class="box"></div> <div class="box"></div>
+  <div class="box"></div> <div class="box"></div>
+  <div class="box"></div> <div class="box"></div>
+</div>
 
-
- <form action="localhost:8080/#" method="post">
+<form action="localhost:8080/#" method="post">
 <div class="select">
     <select id="select" onchange='OnChange(select);'>
     <option value="1">Red</option>
@@ -16,13 +33,13 @@
             var xhttp = new XMLHttpRequest();
             switch (SelValue) {
                 case "1":
-                    document.body.style.backgroundColor = "red";
+                    document.body.style.backgroundColor = "#5D2322";
                     document.cookie = "bot=red";
                     document.getElementById('redPost').submit();
 
                     break;
                     case "2":localhost:3000
-                    document.body.style.backgroundColor = '#74f8ff';
+                    document.body.style.backgroundColor = '#225C5D';
                     document.cookie = "bot=blue";
                     document.getElementById('bluePost').submit();
 
@@ -38,7 +55,7 @@
         <input type="hidden" name ="bot" value = "red">
       </form>
       <form id="bluePost" action="http://localhost:8080/#" method="POST">
-        <input type="hidden" name ="bot" value = "blue">
+        <input type="hidden" name ="bot" value = "#225C5D">
       </form>
     </form>
 </div>
@@ -60,10 +77,10 @@
         }else{
             var bot = getCookie("bot");
             if(decodedCookie.includes("blue")){
-                document.body.style.background = "#74f8ff";
+                document.body.style.background = "#225C5D";
                 document.getElementById('select').selectedIndex = '2';
               }else{
-              document.body.style.background = "red";
+              document.body.style.background = "#5D2322";
             }
         }
   
