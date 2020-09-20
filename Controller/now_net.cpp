@@ -41,6 +41,7 @@ void msg_recv_cb(const uint8_t *mac_addr, const uint8_t *data, int len){
     memcpy(&msg, data, len);
   
   #ifdef MASTER
+    bots[msg.botID].posX = msg.posX
     bots[msg.botID].standby = msg.standby;
     bots[msg.botID].command = msg.command;
     
