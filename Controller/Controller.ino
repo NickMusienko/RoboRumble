@@ -51,6 +51,25 @@ void loop() {
 //    }
 //
 //    if(standby){
+    
+    if(Serial.available() > 0){
+      String newString = Serial.readString();
+      if(newString == "f"){ newCommand = 1;}  
+      else if(newString == "r"){ newCommand = 2;}
+      else if(newString == "b"){ newCommand = 3;}
+      else if(newString == "l"){ newCommand = 4;}
+      else if(newString == "2"){ bot_tar = 2;}
+      
+
+      if(newCommand > 0){
+        Serial.println(newCommand);
+        bots[bot_tar].command = newCommand;
+        esp_now_msg_t msg;
+        msg = create_msg(bot_tar, bots[bot_tar]);
+        send_msg(&msg);
+      }
+    }
+      
       uint8_t customKey = customKeypad.getKey();
     
       if(customKey){
@@ -62,6 +81,7 @@ void loop() {
         msg = create_msg(bot_tar, bots[bot_tar]);
         send_msg(&msg); 
       }
+      
     
       for(uint8_t i=0; i<5;i++){digitalWrite(LED[i],LOW);}
       digitalWrite(LED[0],HIGH);
@@ -71,6 +91,8 @@ void loop() {
 
   #ifndef MASTER
     //rgb.test();
+
+    
     while(bots[BOT_ID].standby != 1){
       uint8_t startingColor = rgb.getColor();
       mC.driveT(bots[BOT_ID].command, 5000);

@@ -9,7 +9,7 @@ var color = 0;
 //SerialPort setup
 const SerialPort = require('serialport')
 const uart = new SerialPort('/dev/ttyUSB0', {
-  baudrate: 115200
+  baudRate: 115200
 })
 
 /* Middlewares */

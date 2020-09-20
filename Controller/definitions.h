@@ -1,7 +1,7 @@
 #ifndef DEFINITIONS_H
 #define DEFINITIONS_H
 
-//#define MASTER
+#define MASTER
 #ifndef MASTER
 #define BOT
 #define BOT_ID 2
