@@ -1,4 +1,5 @@
 #include "rgb_sensor.h"
+#include "definitions.h"
 
 void SensorRGB::init() {
   _tcs = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_50MS, TCS34725_GAIN_1X); 
@@ -54,7 +55,7 @@ uint8_t SensorRGB::mapColor(){
   };
   uint16_t range = 50;
 
-  while (color == 10){
+  
     for(uint8_t i; i < 9; i++){
       if((r >= thresholds[i][0] - range) && (r <= thresholds[i][0] + range) && 
          (g >= thresholds[i][1] - range) && (r <= thresholds[i][3] + range) && 
@@ -67,7 +68,7 @@ uint8_t SensorRGB::mapColor(){
     if(color == 10){
       SensorRGB::update();
     }
-  }
+  
   return color;
 }
 

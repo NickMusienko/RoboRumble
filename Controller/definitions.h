@@ -4,8 +4,8 @@
 //#define MASTER
 #ifndef MASTER
 #define BOT
-#define BOT_ID 0
-
+#define BOT_ID 2
+#endif
 // esp32 pin definitions
 #define PIN_M1A   18
 #define PIN_M1B   19
@@ -30,7 +30,7 @@
 #define colorH 7
 #define colorI 8
 
-#endif
+
 
 #define WIFI_CHANNEL 1
 #define TOTALBOTS 4

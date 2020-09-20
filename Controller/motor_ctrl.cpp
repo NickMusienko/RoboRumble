@@ -1,7 +1,8 @@
 
 #include "Arduino.h"
-#include "motor_ctrl.h"
+
 #include "definitions.h"
+#include "motor_ctrl.h"
 
 void motorCtrl::init()
 {

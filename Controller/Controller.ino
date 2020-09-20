@@ -15,14 +15,14 @@ uint8_t newCommand = 0;
 
 #endif
 
-#ifndef MASTER
+
   #include "Adafruit_TCS34725.h"
   #include "motor_ctrl.h"
   #include "rgb_sensor.h"
 
   motorCtrl mC;
   SensorRGB rgb;
-#endif
+
 
 void setup() {
   Serial.begin(115200);
@@ -45,12 +45,12 @@ void setup() {
 void loop() {
 
   #ifdef MASTER
-    boolean standby = true;
-    for int i = 0; i < TOTALBOTS; i++){
-      if(bots[i].standby != 1){standby = false; break;}
-    }
-
-    if(standby){
+//    boolean standby = true;
+//    for( int i = 0; i < TOTALBOTS; i++){
+//      if(bots[i].standby != 1){standby = false; break;}
+//    }
+//
+//    if(standby){
       uint8_t customKey = customKeypad.getKey();
     
       if(customKey){
@@ -66,14 +66,14 @@ void loop() {
       for(uint8_t i=0; i<5;i++){digitalWrite(LED[i],LOW);}
       digitalWrite(LED[0],HIGH);
       if(bot_tar < 5){digitalWrite(LED[bot_tar+1], HIGH);digitalWrite(LED[0],LOW);}
-    }
+//    }
   #endif
 
   #ifndef MASTER
     //rgb.test();
     while(bots[BOT_ID].standby != 1){
       uint8_t startingColor = rgb.getColor();
-      mC.driveT(bots[BOT_ID].command, 2000);
+      mC.driveT(bots[BOT_ID].command, 5000);
       Serial.print("Executing Command: ");
       Serial.println(bots[BOT_ID].command);
       int8_t endColor = rgb.getColor();
