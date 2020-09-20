@@ -42,23 +42,24 @@ void SensorRGB::setLED(uint8_t state) {
 uint8_t SensorRGB::mapColor(){
   uint8_t color = 10;                             
                               //rLow, rHigh, gLow, gHigh, bLow, bHigh, cLow, cHigh
-  uint16_t thresholds[9][8]{   {   0,  5000,    0,  5000,    0,  5000,    0,  5000}, //colorA purple
-                               {   0,  5000,    0,  5000,    0,  5000,    0,  5000}, //colorB pink
-                               {   0,  5000,    0,  5000,    0,  5000,    0,  5000}, //colorC yellow
-                               {   0,  5000,    0,  5000,    0,  5000,    0,  5000}, //colorD white
-                               {   0,  5000,    0,  5000,    0,  5000,    0,  5000}, //colorE green
-                               {   0,  5000,    0,  5000,    0,  5000,    0,  5000}, //colorF blue
-                               {   0,  5000,    0,  5000,    0,  5000,    0,  5000}, //colorG cyan
-                               {   0,  5000,    0,  5000,    0,  5000,    0,  5000}, //colorH red
-                               {   0,  5000,    0,  5000,    0,  5000,    0,  5000}  //colorI black
+  uint16_t thresholds[9][4]{   {  122,   66,    77,  252}, //colorA purple
+                               {  466,   85,    97,  605}, //colorB pink
+                               {  593,  214,   103,  910}, //colorC yellow
+                               {  698,  321,   218, 1250}, //colorD white
+                               {   71,   95,    52,  226}, //colorE green
+                               {   95,  130,   177,  422}, //colorF blue
+                               {  203,  335,   270,  868}, //colorG cyan
+                               {  651,  112,   117,  842}, //colorH red
+                               {   49,   37,    27,  117}  //colorI black
   };
+  uint16_t range = 50;
 
   while (color == 10){
     for(uint8_t i; i < 9; i++){
-      if(r >= thresholds[i][0] && r <= thresholds[i][1] && 
-         g >= thresholds[i][2] && g <= thresholds[i][3] && 
-         b >= thresholds[i][4] && b <= thresholds[i][5] && 
-         c >= thresholds[i][6] && c <= thresholds[i][7]){
+      if((r >= thresholds[i][0] - range) && (r <= thresholds[i][0] + range) && 
+         (g >= thresholds[i][1] - range) && (r <= thresholds[i][3] + range) && 
+         (b >= thresholds[i][2] - range) && (r <= thresholds[i][2] + range) && 
+         (c >= thresholds[i][3] - range) && (r <= thresholds[i][1] + range)){
            color = i;
            break;
          }

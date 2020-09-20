@@ -45,29 +45,35 @@ void setup() {
 void loop() {
 
   #ifdef MASTER
-    uint8_t customKey = customKeypad.getKey();
-  
-    if(customKey){
-      //Serial.print(customKey);
-      keypadData = keypadRead(customKey, keypadData);
-      bot_tar = keypadData.botID;
-      bots[bot_tar].command = keypadData.commandID;
-      esp_now_msg_t msg;
-      msg = create_msg(bot_tar, bots[bot_tar]);
-      send_msg(&msg); 
+    boolean standby = true;
+    for int i = 0; i < TOTALBOTS; i++){
+      if(bots[i].standby != 1){standby = false; break;}
     }
-  
-  for(uint8_t i=0; i<5;i++){digitalWrite(LED[i],LOW);}
-  digitalWrite(LED[0],HIGH);
-  if(bot_tar < 5){digitalWrite(LED[bot_tar+1], HIGH);digitalWrite(LED[0],LOW);}
-  
+
+    if(standby){
+      uint8_t customKey = customKeypad.getKey();
+    
+      if(customKey){
+        //Serial.print(customKey);
+        keypadData = keypadRead(customKey, keypadData);
+        bot_tar = keypadData.botID;
+        bots[bot_tar].command = keypadData.commandID;
+        esp_now_msg_t msg;
+        msg = create_msg(bot_tar, bots[bot_tar]);
+        send_msg(&msg); 
+      }
+    
+      for(uint8_t i=0; i<5;i++){digitalWrite(LED[i],LOW);}
+      digitalWrite(LED[0],HIGH);
+      if(bot_tar < 5){digitalWrite(LED[bot_tar+1], HIGH);digitalWrite(LED[0],LOW);}
+    }
   #endif
 
   #ifndef MASTER
-    rgb.test();
+    //rgb.test();
     while(bots[BOT_ID].standby != 1){
       uint8_t startingColor = rgb.getColor();
-      mC.drive(bots[BOT_ID].command);
+      mC.driveT(bots[BOT_ID].command, 2000);
       Serial.print("Executing Command: ");
       Serial.println(bots[BOT_ID].command);
       int8_t endColor = rgb.getColor();
@@ -80,15 +86,15 @@ void loop() {
         
         bots[BOT_ID].posX += chgX;
         bots[BOT_ID].posY += chgY;
-        }
+      }
         
       bots[BOT_ID].standby = 1;
       bots[BOT_ID].command = 0;
-      }
+    }
   
-      esp_now_msg_t msg;
-      msg = create_msg(BOT_ID, bots[BOT_ID]);
-      send_msg(&msg);
+    esp_now_msg_t msg;
+    msg = create_msg(BOT_ID, bots[BOT_ID]);
+    send_msg(&msg);
     
   #endif
   
